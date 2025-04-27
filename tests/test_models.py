@@ -7,10 +7,9 @@ from fires3.models import Object
 
 @pytest.fixture
 def object_data():
-    def fake_loader():
-        return BytesIO(b"test content")
+    content = BytesIO(b"test content")
 
-    object = Object("key", fake_loader)
+    object = Object("key", content)
 
     return object, b"test content"
 
@@ -20,4 +19,4 @@ def test_object(object_data):
 
     assert object.key
     assert object.content
-    assert object.content.getvalue() == content
+    assert object.content.read() == content
