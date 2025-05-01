@@ -2,13 +2,12 @@ from io import BytesIO
 
 import pytest
 
-from fires3.models import Object
+from fires3.domain.models import Object
 
 
 @pytest.fixture
 def object_data():
     content = BytesIO(b"test content")
-
     object = Object("key", content)
 
     return object, b"test content"
